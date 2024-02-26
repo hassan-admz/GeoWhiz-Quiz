@@ -10,7 +10,6 @@
 		CEF6CC462B8D54AF00A0FBA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC452B8D54AF00A0FBA7 /* AppDelegate.swift */; };
 		CEF6CC482B8D54AF00A0FBA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC472B8D54AF00A0FBA7 /* SceneDelegate.swift */; };
 		CEF6CC4A2B8D54AF00A0FBA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC492B8D54AF00A0FBA7 /* ViewController.swift */; };
-		CEF6CC4D2B8D54AF00A0FBA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF6CC4B2B8D54AF00A0FBA7 /* Main.storyboard */; };
 		CEF6CC4F2B8D54B400A0FBA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF6CC4E2B8D54B400A0FBA7 /* Assets.xcassets */; };
 		CEF6CC522B8D54B400A0FBA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF6CC502B8D54B400A0FBA7 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -20,7 +19,6 @@
 		CEF6CC452B8D54AF00A0FBA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF6CC472B8D54AF00A0FBA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CEF6CC492B8D54AF00A0FBA7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CEF6CC4C2B8D54AF00A0FBA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEF6CC4E2B8D54B400A0FBA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEF6CC512B8D54B400A0FBA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEF6CC532B8D54B400A0FBA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,15 +54,54 @@
 		CEF6CC442B8D54AF00A0FBA7 /* GeoWhiz Quiz */ = {
 			isa = PBXGroup;
 			children = (
-				CEF6CC452B8D54AF00A0FBA7 /* AppDelegate.swift */,
-				CEF6CC472B8D54AF00A0FBA7 /* SceneDelegate.swift */,
-				CEF6CC492B8D54AF00A0FBA7 /* ViewController.swift */,
-				CEF6CC4B2B8D54AF00A0FBA7 /* Main.storyboard */,
-				CEF6CC4E2B8D54B400A0FBA7 /* Assets.xcassets */,
-				CEF6CC502B8D54B400A0FBA7 /* LaunchScreen.storyboard */,
+				CEF6CC5D2B8D551300A0FBA7 /* Model */,
+				CEF6CC5C2B8D550800A0FBA7 /* View */,
+				CEF6CC5B2B8D54FE00A0FBA7 /* Controller */,
+				CEF6CC5A2B8D54F100A0FBA7 /* Resources */,
+				CEF6CC592B8D54E200A0FBA7 /* Supporting */,
 				CEF6CC532B8D54B400A0FBA7 /* Info.plist */,
 			);
 			path = "GeoWhiz Quiz";
+			sourceTree = "<group>";
+		};
+		CEF6CC592B8D54E200A0FBA7 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				CEF6CC452B8D54AF00A0FBA7 /* AppDelegate.swift */,
+				CEF6CC472B8D54AF00A0FBA7 /* SceneDelegate.swift */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		CEF6CC5A2B8D54F100A0FBA7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CEF6CC4E2B8D54B400A0FBA7 /* Assets.xcassets */,
+				CEF6CC502B8D54B400A0FBA7 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CEF6CC5B2B8D54FE00A0FBA7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CEF6CC492B8D54AF00A0FBA7 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CEF6CC5C2B8D550800A0FBA7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEF6CC5D2B8D551300A0FBA7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +164,6 @@
 			files = (
 				CEF6CC522B8D54B400A0FBA7 /* LaunchScreen.storyboard in Resources */,
 				CEF6CC4F2B8D54B400A0FBA7 /* Assets.xcassets in Resources */,
-				CEF6CC4D2B8D54AF00A0FBA7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +183,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CEF6CC4B2B8D54AF00A0FBA7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CEF6CC4C2B8D54AF00A0FBA7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CEF6CC502B8D54B400A0FBA7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -216,7 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +298,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -292,9 +320,8 @@
 				INFOPLIST_FILE = "GeoWhiz Quiz/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -320,9 +347,8 @@
 				INFOPLIST_FILE = "GeoWhiz Quiz/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
