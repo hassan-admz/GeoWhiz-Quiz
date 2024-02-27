@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LeaderboardVC.swift
 //  GeoWhiz Quiz
 //
 //  Created by Hassan Mayers on 27/2/24.
@@ -7,12 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LeaderboardVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemTeal
-        navigationItem.title = "GeoWhiz Quiz"
     }
 }
-

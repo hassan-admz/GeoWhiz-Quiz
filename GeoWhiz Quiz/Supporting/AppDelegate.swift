@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  GeoWhiz Quiz
 //
-//  Created by user on 27/2/24.
+//  Created by Hassan Mayers on 27/2/24.
 //
 
 import UIKit

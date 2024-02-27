@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  GeoWhiz Quiz
 //
-//  Created by user on 27/2/24.
+//  Created by Hassan Mayers on 27/2/24.
 //
 
 import UIKit
@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let winScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: winScene)
-        window.rootViewController = UINavigationController(rootViewController: ViewController())
+        window.rootViewController = UINavigationController(rootViewController: SignInVC())
         self.window = window
         window.makeKeyAndVisible()
     }
