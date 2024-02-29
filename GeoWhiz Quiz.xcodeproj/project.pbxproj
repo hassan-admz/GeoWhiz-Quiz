@@ -31,6 +31,9 @@
 		CEF6CC832B8E1DDA00A0FBA7 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC822B8E1DDA00A0FBA7 /* QuizView.swift */; };
 		CEF6CC852B8E1DFC00A0FBA7 /* QuizResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC842B8E1DFC00A0FBA7 /* QuizResultsView.swift */; };
 		CEF6CC872B8E1E1400A0FBA7 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC862B8E1E1400A0FBA7 /* LeaderboardView.swift */; };
+		CEF6CC892B90269A00A0FBA7 /* CircularCountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC882B90269A00A0FBA7 /* CircularCountdownTimerView.swift */; };
+		CEF6CC8B2B906CAE00A0FBA7 /* PointsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC8A2B906CAE00A0FBA7 /* PointsContainerView.swift */; };
+		CEF6CC8D2B9076DE00A0FBA7 /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC8C2B9076DE00A0FBA7 /* LeaderboardTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		CEF6CC822B8E1DDA00A0FBA7 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		CEF6CC842B8E1DFC00A0FBA7 /* QuizResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultsView.swift; sourceTree = "<group>"; };
 		CEF6CC862B8E1E1400A0FBA7 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		CEF6CC882B90269A00A0FBA7 /* CircularCountdownTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularCountdownTimerView.swift; sourceTree = "<group>"; };
+		CEF6CC8A2B906CAE00A0FBA7 /* PointsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsContainerView.swift; sourceTree = "<group>"; };
+		CEF6CC8C2B9076DE00A0FBA7 /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,9 @@
 				CEF6CC822B8E1DDA00A0FBA7 /* QuizView.swift */,
 				CEF6CC842B8E1DFC00A0FBA7 /* QuizResultsView.swift */,
 				CEF6CC862B8E1E1400A0FBA7 /* LeaderboardView.swift */,
+				CEF6CC882B90269A00A0FBA7 /* CircularCountdownTimerView.swift */,
+				CEF6CC8A2B906CAE00A0FBA7 /* PointsContainerView.swift */,
+				CEF6CC8C2B9076DE00A0FBA7 /* LeaderboardTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -239,13 +248,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF6CC7F2B8E1D9F00A0FBA7 /* SignInView.swift in Sources */,
+				CEF6CC8D2B9076DE00A0FBA7 /* LeaderboardTableViewCell.swift in Sources */,
 				CEF6CC752B8E19B300A0FBA7 /* DifficultySelectionVC.swift in Sources */,
 				CEF6CC852B8E1DFC00A0FBA7 /* QuizResultsView.swift in Sources */,
 				CEF6CC832B8E1DDA00A0FBA7 /* QuizView.swift in Sources */,
 				CEF6CC772B8E19CB00A0FBA7 /* QuizVC.swift in Sources */,
+				CEF6CC8B2B906CAE00A0FBA7 /* PointsContainerView.swift in Sources */,
 				CEF6CC792B8E19E400A0FBA7 /* QuizResultsVC.swift in Sources */,
 				CEF6CC7B2B8E1A0900A0FBA7 /* LeaderboardVC.swift in Sources */,
 				CEF6CC7D2B8E1B0200A0FBA7 /* QuizModel.swift in Sources */,
+				CEF6CC892B90269A00A0FBA7 /* CircularCountdownTimerView.swift in Sources */,
 				CEF6CC4A2B8D54AF00A0FBA7 /* SignInVC.swift in Sources */,
 				CEF6CC462B8D54AF00A0FBA7 /* AppDelegate.swift in Sources */,
 				CEF6CC812B8E1DBF00A0FBA7 /* DifficultySelectionView.swift in Sources */,
@@ -394,7 +406,6 @@
 				INFOPLIST_FILE = "GeoWhiz Quiz/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -422,7 +433,6 @@
 				INFOPLIST_FILE = "GeoWhiz Quiz/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
