@@ -11,23 +11,30 @@ class DifficultySelectionView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let lbl = UILabel()
-        
+        lbl.text = "Choose Difficulty"
+        lbl.textColor = .black
+        lbl.font = UIFont.systemFont(ofSize: 25, weight: .semibold)
+        lbl.textAlignment = .center
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
-    }()
-    
-    private lazy var selectionButton: UIButton = {
-        let btn = UIButton()
-        
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        return btn
     }()
     
     lazy var stackView = UIStackView()
     
     private lazy var signOutButton: UIButton = {
-        let btn = UIButton()
-        
+        let btn = UIButton(type: .system)
+        btn.setTitle("Sign Out", for: .normal)
+        btn.setTitleColor(.red, for: .normal)
+        btn.isEnabled = true
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+    private lazy var deleteAccountButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("Delete Account", for: .normal)
+        btn.setTitleColor(.red, for: .normal)
+        btn.isEnabled = true
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -50,12 +57,27 @@ class DifficultySelectionView: UIView {
         addSubview(titleLabel)
         configureStackView()
         addSubview(signOutButton)
+        addSubview(deleteAccountButton)
     }
     
     private func setupDifficultySelectionViewConstraints() {
         NSLayoutConstraint.activate([
-        
-        
+            
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.widthAnchor.constraint(equalToConstant: 250),
+            titleLabel.heightAnchor.constraint(equalToConstant: 50),
+            
+            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            
+            signOutButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 130),
+            signOutButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+
+            deleteAccountButton.topAnchor.constraint(equalTo: signOutButton.bottomAnchor, constant: 20),
+            deleteAccountButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+            
         ])
     }
     
@@ -63,31 +85,25 @@ class DifficultySelectionView: UIView {
         addSubview(stackView)
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 18
+        stackView.spacing = 20
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        setStackViewConstraints()
         addButtonsToStackView()
-    }
-    
-    private func setStackViewConstraints() {
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            stackView.bottomAnchor.constraint(equalTo: signOutButton.topAnchor, constant: -30)
-        ])
     }
     
     private func addButtonsToStackView() {
         let buttonTitle = ["Easy","Medium","Difficult"]
         
         for title in buttonTitle {
-            lazy var button = selectionButton
+            let button = UIButton(type: .system)
             button.setTitle("\(title)", for: .normal)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
             button.setTitleColor(.black, for: .normal)
-            button.heightAnchor.constraint(equalToConstant: 100).isActive = true
+            button.backgroundColor = .systemGray6
+            button.layer.cornerRadius = 10
+            button.heightAnchor.constraint(equalToConstant: 75).isActive = true
+            button.widthAnchor.constraint(equalToConstant: 300).isActive = true
             button.clipsToBounds = true
+            button.isEnabled = true
             stackView.addArrangedSubview(button)
         }
     }

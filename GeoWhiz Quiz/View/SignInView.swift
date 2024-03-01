@@ -11,32 +11,24 @@ class SignInView: UIView {
     
     private lazy var logoImageView: UIImageView = {
         let iv = UIImageView()
-        
+        iv.image = UIImage(named: "earth-globe")
+        iv.tintColor = .black
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
     
     private lazy var titleLabel: UILabel = {
         let lbl = UILabel()
-        
+        lbl.text = "GeoWhiz Quiz"
+        lbl.textColor = .black
+        lbl.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
+        lbl.textAlignment = .center
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
-    
-    private lazy var subtitleLabel: UILabel = {
-        let lbl = UILabel()
         
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        return lbl
-    }()
-    
-    private lazy var signInButton: UIButton = {
-        let btn = UIButton()
-        
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        return btn
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSignInViewUI()
@@ -46,11 +38,6 @@ class SignInView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        setupSignInView()
-//    }
-    
     private func setupSignInViewUI() {
         addSignInViews()
         setupSignInViewConstraints()
@@ -59,13 +46,27 @@ class SignInView: UIView {
     private func addSignInViews() {
         addSubview(logoImageView)
         addSubview(titleLabel)
-        addSubview(subtitleLabel)
-        addSubview(signInButton)
     }
     
     private func setupSignInViewConstraints() {
         NSLayoutConstraint.activate([
             
+            logoImageView.topAnchor.constraint(equalTo: topAnchor, constant: 150),
+            logoImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            logoImageView.widthAnchor.constraint(equalToConstant: 200),
+            logoImageView.heightAnchor.constraint(equalToConstant: 200),
+            
+            titleLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 30),
+            titleLabel.centerXAnchor.constraint(equalTo: logoImageView.centerXAnchor, constant: -6),
+            titleLabel.widthAnchor.constraint(equalToConstant: 200),
+            titleLabel.heightAnchor.constraint(equalToConstant: 20)
+            
         ])
+    }
+    
+    // MARK: - Selectors
+    
+    @objc func didSignIn() {
+        print("Signed In with Google")
     }
 }
