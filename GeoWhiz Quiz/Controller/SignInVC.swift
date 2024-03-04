@@ -56,17 +56,14 @@ class SignInVC: UIViewController {
     }
     
     @objc func didTapGoogleSignIn() {
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
-            guard let user = result?.user,
-                  let idToken = user.idToken?.tokenString,
-                  let strongSelf = self else {
-                print("error with signin")
-                return
-            }
-//
-//            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
-//            AuthManager.shared.signIn(cred: credential)
-        }
+//        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
+//            guard let user = result?.user,
+//                  let idToken = user.idToken?.tokenString,
+//                  let strongSelf = self else {
+//                print("error with signin")
+//                return
+//            }
+//        }
     }
 }
 

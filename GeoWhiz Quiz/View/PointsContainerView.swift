@@ -26,8 +26,6 @@ class PointsContainerView: UIView {
         self.layer.borderWidth = 2 // Adjust the border width as needed
         self.layer.borderColor = UIColor.gray.cgColor // Sets the border color to gray
         
-        // Makes the view's corners rounded, achieving a pill shape
-        // The cornerRadius will be set/updated to half of the view's height to ensure the pill shape
     }
     
     override func layoutSubviews() {

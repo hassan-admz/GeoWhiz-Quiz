@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CEB6531B2B93245100246600 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6531A2B93245100246600 /* CircularProgressView.swift */; };
 		CEF6CC462B8D54AF00A0FBA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC452B8D54AF00A0FBA7 /* AppDelegate.swift */; };
 		CEF6CC482B8D54AF00A0FBA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC472B8D54AF00A0FBA7 /* SceneDelegate.swift */; };
 		CEF6CC4A2B8D54AF00A0FBA7 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC492B8D54AF00A0FBA7 /* SignInVC.swift */; };
@@ -31,12 +32,12 @@
 		CEF6CC832B8E1DDA00A0FBA7 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC822B8E1DDA00A0FBA7 /* QuizView.swift */; };
 		CEF6CC852B8E1DFC00A0FBA7 /* QuizResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC842B8E1DFC00A0FBA7 /* QuizResultsView.swift */; };
 		CEF6CC872B8E1E1400A0FBA7 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC862B8E1E1400A0FBA7 /* LeaderboardView.swift */; };
-		CEF6CC892B90269A00A0FBA7 /* CircularCountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC882B90269A00A0FBA7 /* CircularCountdownTimerView.swift */; };
 		CEF6CC8B2B906CAE00A0FBA7 /* PointsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC8A2B906CAE00A0FBA7 /* PointsContainerView.swift */; };
 		CEF6CC8D2B9076DE00A0FBA7 /* LeaderboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC8C2B9076DE00A0FBA7 /* LeaderboardTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CEB6531A2B93245100246600 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		CEF6CC422B8D54AF00A0FBA7 /* GeoWhiz Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GeoWhiz Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF6CC452B8D54AF00A0FBA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF6CC472B8D54AF00A0FBA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		CEF6CC822B8E1DDA00A0FBA7 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		CEF6CC842B8E1DFC00A0FBA7 /* QuizResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultsView.swift; sourceTree = "<group>"; };
 		CEF6CC862B8E1E1400A0FBA7 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
-		CEF6CC882B90269A00A0FBA7 /* CircularCountdownTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularCountdownTimerView.swift; sourceTree = "<group>"; };
 		CEF6CC8A2B906CAE00A0FBA7 /* PointsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsContainerView.swift; sourceTree = "<group>"; };
 		CEF6CC8C2B9076DE00A0FBA7 /* LeaderboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,9 +147,9 @@
 				CEF6CC822B8E1DDA00A0FBA7 /* QuizView.swift */,
 				CEF6CC842B8E1DFC00A0FBA7 /* QuizResultsView.swift */,
 				CEF6CC862B8E1E1400A0FBA7 /* LeaderboardView.swift */,
-				CEF6CC882B90269A00A0FBA7 /* CircularCountdownTimerView.swift */,
 				CEF6CC8A2B906CAE00A0FBA7 /* PointsContainerView.swift */,
 				CEF6CC8C2B9076DE00A0FBA7 /* LeaderboardTableViewCell.swift */,
+				CEB6531A2B93245100246600 /* CircularProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -257,7 +257,7 @@
 				CEF6CC792B8E19E400A0FBA7 /* QuizResultsVC.swift in Sources */,
 				CEF6CC7B2B8E1A0900A0FBA7 /* LeaderboardVC.swift in Sources */,
 				CEF6CC7D2B8E1B0200A0FBA7 /* QuizModel.swift in Sources */,
-				CEF6CC892B90269A00A0FBA7 /* CircularCountdownTimerView.swift in Sources */,
+				CEB6531B2B93245100246600 /* CircularProgressView.swift in Sources */,
 				CEF6CC4A2B8D54AF00A0FBA7 /* SignInVC.swift in Sources */,
 				CEF6CC462B8D54AF00A0FBA7 /* AppDelegate.swift in Sources */,
 				CEF6CC812B8E1DBF00A0FBA7 /* DifficultySelectionView.swift in Sources */,
