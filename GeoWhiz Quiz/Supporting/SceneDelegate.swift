@@ -15,9 +15,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let winScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: winScene)
 //        window.rootViewController = UINavigationController(rootViewController: SignInVC())
-//        window.rootViewController = UINavigationController(rootViewController: DifficultySelectionVC())
+        window.rootViewController = UINavigationController(rootViewController: DifficultySelectionVC())
 //        window.rootViewController = UINavigationController(rootViewController: QuizVC())
-        window.rootViewController = UINavigationController(rootViewController: QuizResultsVC())
+//        window.rootViewController = UINavigationController(rootViewController: QuizResultsVC())
+//        window.rootViewController = UINavigationController(rootViewController: LeaderboardVC())
         self.window = window
         window.makeKeyAndVisible()
     }

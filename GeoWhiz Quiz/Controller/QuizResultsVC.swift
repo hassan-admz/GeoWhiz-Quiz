@@ -16,7 +16,13 @@ class QuizResultsVC: UIViewController {
         configureUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.hidesBackButton = true
+    }
+    
     private func configureUI() {
+        
         self.view.backgroundColor = .systemBackground
         self.navigationItem.title = "GeoWhiz Quiz"
         view.addSubview(quizResultsView)

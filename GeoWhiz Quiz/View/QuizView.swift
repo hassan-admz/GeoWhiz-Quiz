@@ -21,7 +21,7 @@ class QuizView: UIView {
     
     private lazy var pointsLabel: UILabel = {
         let lbl = UILabel()
-        lbl.text = "01"
+        lbl.text = "00"
         lbl.textColor = .black
         lbl.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +51,7 @@ class QuizView: UIView {
         let lbl = UILabel()
         lbl.text = "Here is where the text for the Geography related question will be put for users to answer."
         lbl.textColor = .black
-        lbl.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+        lbl.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         lbl.numberOfLines = 0
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -62,7 +62,6 @@ class QuizView: UIView {
     private lazy var nextButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Next Question", for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = .systemBlue
         btn.layer.cornerRadius = 10
@@ -70,6 +69,7 @@ class QuizView: UIView {
         btn.widthAnchor.constraint(equalToConstant: 200).isActive = true
         btn.clipsToBounds = true
         btn.isEnabled = true
+        btn.addTarget(self, action: #selector(didTapNextButton), for: .touchUpInside)
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -167,7 +167,7 @@ class QuizView: UIView {
         for title in buttonTitle {
             let button = UIButton(type: .system)
             button.setTitle("\(title)", for: .normal)
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+//            button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
             button.setTitleColor(.black, for: .normal)
             button.backgroundColor = .systemGray6
             button.layer.cornerRadius = 10
@@ -175,7 +175,51 @@ class QuizView: UIView {
             button.widthAnchor.constraint(equalToConstant: 200).isActive = true
             button.clipsToBounds = true
             button.isEnabled = true
+            button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
             stackView.addArrangedSubview(button)
+        }
+    }
+    
+    var buttonTapHandler: (() -> Void)?
+    
+    @objc func didTapNextButton() {
+        buttonTapHandler?()
+    }
+    
+    @objc func didTapButton() {
+        print("Tapped!!")
+    }
+    
+    func resetCircularProgressView() {
+        self.circularProgressView.resetCountdown(newDuration: 30)
+    }
+    
+    func setQuestionNumber(questionNumber: Int) {
+        questionNumberLabel.text = "Question \(questionNumber) of 10"
+    }
+    
+    func setQuestion(question: String) {
+        questionLabel.text = question
+    }
+    
+    func setButtonTitles(answers: [String]) {
+        // Shuffle the answers to randomize their order
+        let shuffledAnswers = answers.shuffled()
+        
+        // Iterate through the arranged subviews of the stackView
+        for (index, arrangedSubview) in stackView.arrangedSubviews.enumerated() {
+            guard let button = arrangedSubview as? UIButton else {
+                continue
+            }
+            
+            // Set the button title to the corresponding answer
+            if index < shuffledAnswers.count {
+                button.setTitle(shuffledAnswers[index], for: .normal)
+            } else {
+                // In case the number of answers is less than the number of buttons,
+                // hide the remaining buttons
+                button.isHidden = true
+            }
         }
     }
 }

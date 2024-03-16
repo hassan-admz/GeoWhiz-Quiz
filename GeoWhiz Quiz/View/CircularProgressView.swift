@@ -13,6 +13,7 @@ class CircularProgressView: UIView {
     private var trackLayer = CAShapeLayer()
     private var progressLabel = UILabel()
     private var duration = 30 // Total duration of the countdown
+    private var countdownTimer: Timer?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,6 +58,7 @@ class CircularProgressView: UIView {
     }
     
     private func startCountdown() {
+        countdownTimer?.invalidate()
         // Configure the animation for the progress layer
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.toValue = 1
@@ -67,7 +69,7 @@ class CircularProgressView: UIView {
         
         // Start the timer to update the label
         var remainingSeconds = duration
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+       countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
             guard let self = self else { return }
             remainingSeconds -= 1
             self.progressLabel.text = "\(remainingSeconds)"
@@ -76,6 +78,17 @@ class CircularProgressView: UIView {
                 timer.invalidate()
             }
         }
+    }
+    
+    // Public method to reset and restart the countdown
+    func resetCountdown(newDuration: Int? = nil) {
+        if let newDuration = newDuration {
+            self.duration = newDuration
+        }
+        
+        progressLayer.strokeEnd = 0
+        progressLabel.text = "\(duration)"
+        startCountdown() // Call startCountdown to reset and start over
     }
 }
 

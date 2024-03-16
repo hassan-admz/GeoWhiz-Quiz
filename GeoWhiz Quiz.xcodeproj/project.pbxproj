@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CEB6531B2B93245100246600 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6531A2B93245100246600 /* CircularProgressView.swift */; };
+		CEB6531E2B9936F700246600 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6531D2B9936F700246600 /* NetworkManager.swift */; };
+		CEB653212BA0522500246600 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB653202BA0522500246600 /* String+Extensions.swift */; };
 		CEF6CC462B8D54AF00A0FBA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC452B8D54AF00A0FBA7 /* AppDelegate.swift */; };
 		CEF6CC482B8D54AF00A0FBA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC472B8D54AF00A0FBA7 /* SceneDelegate.swift */; };
 		CEF6CC4A2B8D54AF00A0FBA7 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF6CC492B8D54AF00A0FBA7 /* SignInVC.swift */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		CEB6531A2B93245100246600 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		CEB6531D2B9936F700246600 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CEB653202BA0522500246600 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		CEF6CC422B8D54AF00A0FBA7 /* GeoWhiz Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GeoWhiz Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF6CC452B8D54AF00A0FBA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF6CC472B8D54AF00A0FBA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +83,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CEB6531C2B9936D400246600 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CEB6531D2B9936F700246600 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CEB6531F2BA0517100246600 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEB653202BA0522500246600 /* String+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CEF6CC392B8D54AF00A0FBA7 = {
 			isa = PBXGroup;
 			children = (
@@ -98,9 +118,11 @@
 		CEF6CC442B8D54AF00A0FBA7 /* GeoWhiz Quiz */ = {
 			isa = PBXGroup;
 			children = (
+				CEB6531C2B9936D400246600 /* Managers */,
 				CEF6CC5D2B8D551300A0FBA7 /* Model */,
 				CEF6CC5C2B8D550800A0FBA7 /* View */,
 				CEF6CC5B2B8D54FE00A0FBA7 /* Controller */,
+				CEB6531F2BA0517100246600 /* Extensions */,
 				CEF6CC5A2B8D54F100A0FBA7 /* Resources */,
 				CEF6CC592B8D54E200A0FBA7 /* Supporting */,
 				CEF6CC532B8D54B400A0FBA7 /* Info.plist */,
@@ -147,8 +169,8 @@
 				CEF6CC822B8E1DDA00A0FBA7 /* QuizView.swift */,
 				CEF6CC842B8E1DFC00A0FBA7 /* QuizResultsView.swift */,
 				CEF6CC862B8E1E1400A0FBA7 /* LeaderboardView.swift */,
-				CEF6CC8A2B906CAE00A0FBA7 /* PointsContainerView.swift */,
 				CEF6CC8C2B9076DE00A0FBA7 /* LeaderboardTableViewCell.swift */,
+				CEF6CC8A2B906CAE00A0FBA7 /* PointsContainerView.swift */,
 				CEB6531A2B93245100246600 /* CircularProgressView.swift */,
 			);
 			path = View;
@@ -251,12 +273,14 @@
 				CEF6CC8D2B9076DE00A0FBA7 /* LeaderboardTableViewCell.swift in Sources */,
 				CEF6CC752B8E19B300A0FBA7 /* DifficultySelectionVC.swift in Sources */,
 				CEF6CC852B8E1DFC00A0FBA7 /* QuizResultsView.swift in Sources */,
+				CEB653212BA0522500246600 /* String+Extensions.swift in Sources */,
 				CEF6CC832B8E1DDA00A0FBA7 /* QuizView.swift in Sources */,
 				CEF6CC772B8E19CB00A0FBA7 /* QuizVC.swift in Sources */,
 				CEF6CC8B2B906CAE00A0FBA7 /* PointsContainerView.swift in Sources */,
 				CEF6CC792B8E19E400A0FBA7 /* QuizResultsVC.swift in Sources */,
 				CEF6CC7B2B8E1A0900A0FBA7 /* LeaderboardVC.swift in Sources */,
 				CEF6CC7D2B8E1B0200A0FBA7 /* QuizModel.swift in Sources */,
+				CEB6531E2B9936F700246600 /* NetworkManager.swift in Sources */,
 				CEB6531B2B93245100246600 /* CircularProgressView.swift in Sources */,
 				CEF6CC4A2B8D54AF00A0FBA7 /* SignInVC.swift in Sources */,
 				CEF6CC462B8D54AF00A0FBA7 /* AppDelegate.swift in Sources */,

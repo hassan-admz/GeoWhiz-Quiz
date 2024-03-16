@@ -10,13 +10,32 @@ import UIKit
 class QuizVC: UIViewController {
     
     let quizView = QuizView()
+    var quizData = [Quiz]()
+    var currentQuiz: Quiz?
+    var currentQuizIndex: Int = 0
+    var selectedDifficulty: String?
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("QUIZ DATA IS: \(quizData)")
         configureUI()
+        print("CURRENT QUIZ INDEX IS: \(currentQuizIndex)")
+        print("CURRENT QUIZ IS: \(String(describing: currentQuiz))")
+//        fetchQuiz()
+//        displayCurrentQuiz()
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        fetchQuiz()
+//    }
+    
+    // MARK: - Configure UI
+    
     private func configureUI() {
+        self.displayCurrentQuiz()
         self.view.backgroundColor = .systemBackground
         self.navigationItem.title = "GeoWhiz Quiz"
         view.addSubview(quizView)
@@ -30,5 +49,56 @@ class QuizVC: UIViewController {
             quizView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
             
         ])
+        
+        // Handle Next Button Tapped
+        quizView.buttonTapHandler = { [weak self] in
+            self?.nextButtonTapped()
+        }
+    }
+    
+    private func displayCurrentQuiz() {
+        guard currentQuizIndex < quizData.count else { return }
+        let currentQuiz = quizData[currentQuizIndex]
+        quizView.setQuestion(question: currentQuiz.question.decodedString())
+
+        var answers = currentQuiz.incorrectAnswers
+        answers.append(currentQuiz.correctAnswer)
+        answers.shuffle() // Shuffle to randomize the order
+        
+        quizView.setButtonTitles(answers: answers)
+        quizView.setQuestionNumber(questionNumber: currentQuizIndex+1)
+    }
+    
+    private func nextButtonTapped() {
+        // Logic to display next quiz question & answers
+        currentQuizIndex += 1
+        if currentQuizIndex >= quizData.count {
+            let resultsVC = QuizResultsVC()
+            navigationController?.pushViewController(resultsVC, animated: true)
+        }
+        self.configureUI()
+        quizView.resetCircularProgressView()
+//        fetchQuiz()
+        print("This works!")
+        print("The current index is: \(currentQuizIndex)")
+    }
+    
+    // MARK: - API
+    
+    private func fetchQuiz() {
+        Task {
+            do {
+                guard let difficultySelected = selectedDifficulty else { return }
+                let quiz = try await NetworkManager.shared.fetchQuizData(for: difficultySelected)
+                self.quizData = quiz
+                DispatchQueue.main.async {
+                    self.displayCurrentQuiz()
+                }
+                print(quiz)
+            } catch {
+                print(error)
+            }
+        }
     }
 }
+

@@ -28,6 +28,7 @@ class LeaderboardView: UIView {
     }
     
     private func configureTableView() {
+        tableView.separatorInset = .zero
         addSubview(tableView)
         
         NSLayoutConstraint.activate([
@@ -42,11 +43,15 @@ class LeaderboardView: UIView {
 extension LeaderboardView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LeaderboardTableViewCell.identifier, for: indexPath)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
 }
