@@ -26,6 +26,7 @@ class QuizVC: UIViewController {
     
     private func configureUI() {
         self.displayCurrentQuiz()
+        self.setupAnswerHandling()
         self.view.backgroundColor = .systemBackground
         self.navigationItem.title = "GeoWhiz Quiz"
         view.addSubview(quizView)
@@ -46,6 +47,8 @@ class QuizVC: UIViewController {
         }
     }
     
+    // MARK: - Actions
+    
     private func displayCurrentQuiz() {
         guard currentQuizIndex < quizData.count else { return }
         let currentQuiz = quizData[currentQuizIndex]
@@ -55,8 +58,45 @@ class QuizVC: UIViewController {
         answers.append(currentQuiz.correctAnswer)
         answers.shuffle() // Shuffle to randomize the order
         
-        quizView.setButtonTitles(answers: answers)
+        quizView.setAnswerButtonTitles(answers: answers)
         quizView.setQuestionNumber(questionNumber: currentQuizIndex+1)
+        quizView.currentQuiz = currentQuiz
+    }
+    
+    func setupAnswerHandling() {
+        guard let difficulty = selectedDifficulty else { return }
+        
+        quizView.answerChosen = { [weak self] userAnswerChosen in
+            print("Difficulty: \(difficulty), Answer: \(userAnswerChosen)")
+            // Here you can adjust the behavior based on the difficulty
+            self?.handleUserAnswer(for: difficulty, answer: userAnswerChosen)
+        }
+    }
+
+    func handleUserAnswer(for difficulty: String, answer: String) {
+        // Implement different logic based on the difficulty and the user's answer
+        switch difficulty {
+        case "Easy":
+            easyQuestionAnswered(answer: answer)
+        case "Medium":
+            mediumQuestionAnswered(answer: answer)
+        case "Hard":
+            hardQuestionAnswered(answer: answer)
+        default:
+            print("Difficulty selected unknown")
+        }
+    }
+    
+    private func easyQuestionAnswered(answer: String) {
+        print("THIS IS THE USER'S ANSWER: \(answer)")
+    }
+    
+    private func mediumQuestionAnswered(answer: String) {
+        print("THIS IS THE USER'S ANSWER: \(answer)")
+    }
+    
+    private func hardQuestionAnswered(answer: String) {
+        print("THIS IS THE USER'S ANSWER: \(answer)")
     }
     
     private func nextButtonTapped() {
@@ -68,26 +108,7 @@ class QuizVC: UIViewController {
         }
         self.configureUI()
         quizView.resetCircularProgressView()
-        print("This works!")
-        print("The current index is: \(currentQuizIndex)")
-    }
-    
-    // MARK: - API
-    
-    private func fetchQuiz() {
-        Task {
-            do {
-                guard let difficultySelected = selectedDifficulty else { return }
-                let quiz = try await NetworkManager.shared.fetchQuizData(for: difficultySelected)
-                self.quizData = quiz
-                DispatchQueue.main.async {
-                    self.displayCurrentQuiz()
-                }
-                print(quiz)
-            } catch {
-                print(error)
-            }
-        }
+        quizView.resetAnswerButtons()
     }
 }
 

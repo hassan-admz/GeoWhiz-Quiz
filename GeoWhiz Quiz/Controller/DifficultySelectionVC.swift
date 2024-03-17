@@ -64,7 +64,7 @@ class DifficultySelectionVC: UIViewController {
                     guard let strongSelf = self else { return }
                     let quizzes = try await NetworkManager.shared.fetchQuizData(for: difficulty)
                     DispatchQueue.main.async {
-                        strongSelf.navigateToQuizVC(with: quizzes)
+                        strongSelf.navigateToQuizVC(with: quizzes, for: difficulty)
                     }
                     print(quizzes)
                 } catch {
@@ -74,10 +74,11 @@ class DifficultySelectionVC: UIViewController {
         }
     }
     
-    func navigateToQuizVC(with quizzes: [Quiz]) {
+    func navigateToQuizVC(with quizzes: [Quiz], for difficulty: String) {
         
         let quizVC = QuizVC()
         quizVC.quizData = quizzes
+        quizVC.selectedDifficulty = difficulty
         
         // Navigation on the main thread
         DispatchQueue.main.async {

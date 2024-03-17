@@ -108,6 +108,7 @@ class QuizResultsView: UIView {
         btn.widthAnchor.constraint(equalToConstant: 140).isActive = true
         btn.clipsToBounds = true
         btn.isEnabled = true
+        btn.addTarget(self, action: #selector(didTapHomeButton), for: .touchUpInside)
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -185,5 +186,11 @@ class QuizResultsView: UIView {
             homeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
             homeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40)
         ])
+    }
+    
+    var buttonTapHandler: (() -> Void)?
+
+    @objc func didTapHomeButton() {
+        buttonTapHandler?()
     }
 }

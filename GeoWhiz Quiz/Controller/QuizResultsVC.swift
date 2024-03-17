@@ -36,5 +36,14 @@ class QuizResultsVC: UIViewController {
             quizResultsView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
             
         ])
+        
+        // Handle Home Button Tapped
+        quizResultsView.buttonTapHandler = { [weak self] in
+            self?.homeButtonTapped()
+        }
+    }
+    
+    private func homeButtonTapped() {
+        navigationController?.popToRootViewController(animated: true)
     }
 }

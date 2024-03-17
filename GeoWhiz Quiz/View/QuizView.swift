@@ -127,7 +127,7 @@ class QuizView: UIView {
             nextButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
             nextButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
             nextButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
-
+            
         ])
     }
     
@@ -167,7 +167,6 @@ class QuizView: UIView {
         for title in buttonTitle {
             let button = UIButton(type: .system)
             button.setTitle("\(title)", for: .normal)
-//            button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
             button.setTitleColor(.black, for: .normal)
             button.backgroundColor = .systemGray6
             button.layer.cornerRadius = 10
@@ -175,7 +174,7 @@ class QuizView: UIView {
             button.widthAnchor.constraint(equalToConstant: 200).isActive = true
             button.clipsToBounds = true
             button.isEnabled = true
-            button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+            button.addTarget(self, action: #selector(didTapAnswerButton(_:)), for: .touchUpInside)
             stackView.addArrangedSubview(button)
         }
     }
@@ -186,8 +185,34 @@ class QuizView: UIView {
         buttonTapHandler?()
     }
     
-    @objc func didTapButton() {
-        print("Tapped!!")
+    var answerChosen: ((String) -> Void)?
+    var currentQuiz: Quiz?
+    
+    @objc func didTapAnswerButton(_ sender: UIButton) {
+        guard let userAnswerChosen = sender.titleLabel?.text else { return }
+        answerChosen?(userAnswerChosen)
+        
+        if userAnswerChosen == currentQuiz?.correctAnswer {
+            sender.layer.borderWidth = 2.0
+            sender.layer.borderColor = UIColor.green.cgColor
+        } else {
+            sender.layer.borderWidth = 2.0
+            sender.layer.borderColor = UIColor.red.cgColor
+        }
+        stackView.arrangedSubviews.forEach { view in
+            if let button = view as? UIButton {
+                button.isEnabled = false
+            }
+        }
+    }
+    
+    func resetAnswerButtons() {
+        for case let button as UIButton in stackView.arrangedSubviews {
+            // Here you can modify the button as needed
+            button.isEnabled = true
+            button.layer.borderColor = UIColor.clear.cgColor
+            button.layer.borderWidth = 0
+        }
     }
     
     func resetCircularProgressView() {
@@ -202,23 +227,21 @@ class QuizView: UIView {
         questionLabel.text = question
     }
     
-    func setButtonTitles(answers: [String]) {
-        // Shuffle the answers to randomize their order
+    func setAnswerButtonTitles(answers: [String]) {
         let shuffledAnswers = answers.shuffled()
         
-        // Iterate through the arranged subviews of the stackView
-        for (index, arrangedSubview) in stackView.arrangedSubviews.enumerated() {
-            guard let button = arrangedSubview as? UIButton else {
-                continue
+        for (index, answer) in shuffledAnswers.enumerated() {
+            if let button = stackView.arrangedSubviews[index] as? UIButton {
+                button.setTitle(answer.decodedString(), for: .normal)
+                button.isHidden = false
+                button.layer.borderColor = .none
+                button.isEnabled = true
             }
-            
-            // Set the button title to the corresponding answer
-            if index < shuffledAnswers.count {
-                button.setTitle(shuffledAnswers[index], for: .normal)
-            } else {
-                // In case the number of answers is less than the number of buttons,
-                // hide the remaining buttons
-                button.isHidden = true
+        }
+        // Hide any unused buttons if there are less than 4 answers
+        if shuffledAnswers.count < stackView.arrangedSubviews.count {
+            for index in shuffledAnswers.count..<stackView.arrangedSubviews.count {
+                stackView.arrangedSubviews[index].isHidden = true
             }
         }
     }
