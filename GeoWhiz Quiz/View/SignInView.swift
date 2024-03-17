@@ -63,10 +63,4 @@ class SignInView: UIView {
             
         ])
     }
-    
-    // MARK: - Selectors
-    
-    @objc func didSignIn() {
-        print("Signed In with Google")
-    }
 }

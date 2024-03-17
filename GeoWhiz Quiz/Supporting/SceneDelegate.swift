@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -14,13 +15,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let winScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: winScene)
-//        window.rootViewController = UINavigationController(rootViewController: SignInVC())
-        window.rootViewController = UINavigationController(rootViewController: DifficultySelectionVC())
+        window.rootViewController = UINavigationController(rootViewController: SignInVC())
+//        window.rootViewController = UINavigationController(rootViewController: DifficultySelectionVC())
 //        window.rootViewController = UINavigationController(rootViewController: QuizVC())
 //        window.rootViewController = UINavigationController(rootViewController: QuizResultsVC())
 //        window.rootViewController = UINavigationController(rootViewController: LeaderboardVC())
         self.window = window
         window.makeKeyAndVisible()
+        if let user = Auth.auth().currentUser {
+            window.rootViewController = UINavigationController(rootViewController: DifficultySelectionVC(currentUser: user))
+        } else {
+            window.rootViewController = UINavigationController(rootViewController: SignInVC())
+        }
+    }
+    
+    func changeRootViewController(vc: UIViewController) {
+        guard let window = window else {
+            return
+        }
+        
+        window.rootViewController = vc
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromTop, animations: nil, completion: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

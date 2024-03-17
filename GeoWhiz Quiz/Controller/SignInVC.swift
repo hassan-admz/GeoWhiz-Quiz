@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleSignIn
+import FirebaseAuth
 
 class SignInVC: UIViewController {
     
@@ -16,9 +17,9 @@ class SignInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        configureSignInViews()
         configureButton()
         configureGoogleSignIn()
-        configureSignInViews()
     }
     
     private func configureSignInViews() {
@@ -47,7 +48,7 @@ class SignInVC: UIViewController {
     }
     
     private func configureGoogleSignIn() {
-        print("Signed In to Google")
+        
         let clientID = "73406296588-cr11ksunr6i8rma02kujmo2t98bsngjk.apps.googleusercontent.com"
         
         // Create Google Sign In configuration object.
@@ -56,14 +57,16 @@ class SignInVC: UIViewController {
     }
     
     @objc func didTapGoogleSignIn() {
-//        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
-//            guard let user = result?.user,
-//                  let idToken = user.idToken?.tokenString,
-//                  let strongSelf = self else {
-//                print("error with signin")
-//                return
-//            }
-//        }
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { result, error in
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString else {
+                print("error with signin")
+                return
+            }
+            print("SIGNED IN!!!")
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+            AuthManager.shared.signIn(cred: credential)
+        }
     }
 }
 

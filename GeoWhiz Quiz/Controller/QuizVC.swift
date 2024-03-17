@@ -19,18 +19,8 @@ class QuizVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("QUIZ DATA IS: \(quizData)")
         configureUI()
-        print("CURRENT QUIZ INDEX IS: \(currentQuizIndex)")
-        print("CURRENT QUIZ IS: \(String(describing: currentQuiz))")
-//        fetchQuiz()
-//        displayCurrentQuiz()
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        fetchQuiz()
-//    }
     
     // MARK: - Configure UI
     
@@ -78,7 +68,6 @@ class QuizVC: UIViewController {
         }
         self.configureUI()
         quizView.resetCircularProgressView()
-//        fetchQuiz()
         print("This works!")
         print("The current index is: \(currentQuizIndex)")
     }

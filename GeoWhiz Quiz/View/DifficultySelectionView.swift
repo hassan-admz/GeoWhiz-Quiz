@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class DifficultySelectionView: UIView {
   
@@ -28,7 +29,7 @@ class DifficultySelectionView: UIView {
         btn.setTitle("Sign Out", for: .normal)
         btn.setTitleColor(.red, for: .normal)
         btn.isEnabled = true
-        btn.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(didTapSignOut), for: .touchUpInside)
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -38,6 +39,7 @@ class DifficultySelectionView: UIView {
         btn.setTitle("Delete Account", for: .normal)
         btn.setTitleColor(.red, for: .normal)
         btn.isEnabled = true
+        btn.addTarget(self, action: #selector(didTapDeleteAccount), for: .touchUpInside)
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -115,18 +117,30 @@ class DifficultySelectionView: UIView {
             stackView.addArrangedSubview(button)
         }
     }
-
-    var difficultySelected: ((String) -> Void)?
     
     // MARK: Selectors
+    
+    var difficultySelected: ((String) -> Void)?
     
     @objc func didTapDifficultySelectionButton(_ sender: UIButton) {
         guard let difficulty = sender.titleLabel?.text else { return }
         difficultySelected?(difficulty)
-//        print("\(difficulty)")
     }
     
-    @objc func didTapButton() {
-        print("Tapped!!")
+    @objc private func didTapSignOut() {
+        do {
+            try AuthManager.shared.signOut()
+            let signInVC = UINavigationController(rootViewController: SignInVC())
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc: signInVC)
+            print("SIGNED OUTTT!!!")
+        } catch {
+            print("error signing out")
+        }
+    }
+
+    var buttonTapHandler: (() -> Void)?
+
+    @objc func didTapDeleteAccount() {
+        buttonTapHandler?()
     }
 }
