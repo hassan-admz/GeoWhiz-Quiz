@@ -9,8 +9,6 @@ import Foundation
 
 struct NetworkManager {
     
-    // Step 1: Create a Network Manager to handle networking/fetching of quiz data from public API
-    
     static let shared = NetworkManager()
     
     func fetchQuizData(for difficulty: String) async throws -> [Quiz] {

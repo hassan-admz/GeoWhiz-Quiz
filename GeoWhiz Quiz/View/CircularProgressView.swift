@@ -14,6 +14,7 @@ class CircularProgressView: UIView {
     private var progressLabel = UILabel()
     private var duration = 30 // Total duration of the countdown
     private var countdownTimer: Timer?
+    var remainingSecondsUpdate: ((Int) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,7 +58,7 @@ class CircularProgressView: UIView {
         addSubview(progressLabel)
     }
     
-    private func startCountdown() {
+    func startCountdown() {
         countdownTimer?.invalidate()
         // Configure the animation for the progress layer
         let animation = CABasicAnimation(keyPath: "strokeEnd")
@@ -68,11 +69,13 @@ class CircularProgressView: UIView {
         progressLayer.add(animation, forKey: "progressAnim")
         
         // Start the timer to update the label
+        
         var remainingSeconds = duration
-       countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+        countdownTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
             guard let self = self else { return }
             remainingSeconds -= 1
             self.progressLabel.text = "\(remainingSeconds)"
+            self.remainingSecondsUpdate?(remainingSeconds)
             
             if remainingSeconds <= 0 {
                 timer.invalidate()

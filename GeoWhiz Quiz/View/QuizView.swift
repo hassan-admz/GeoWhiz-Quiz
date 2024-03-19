@@ -21,7 +21,7 @@ class QuizView: UIView {
     
     private lazy var pointsLabel: UILabel = {
         let lbl = UILabel()
-        lbl.text = "00"
+        lbl.text = "0"
         lbl.textColor = .black
         lbl.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -76,6 +76,7 @@ class QuizView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupQuizViewUI()
     }
     
@@ -86,6 +87,7 @@ class QuizView: UIView {
     private func setupQuizViewUI() {
         addQuizViews()
         setupQuizViewConstraints()
+        getRemainingSeconds()
     }
     
     private func addQuizViews() {
@@ -187,17 +189,63 @@ class QuizView: UIView {
     
     var answerChosen: ((String) -> Void)?
     var currentQuiz: Quiz?
+    var selectedDifficulty: String?
+    var pointsScored: Int = 0
+    var remainingSeconds: Int = 0
+    
+    func getRemainingSeconds() {
+        circularProgressView.remainingSecondsUpdate = { [weak self] remainingSeconds in
+            // Use remainingSeconds as needed
+            self?.remainingSeconds = remainingSeconds
+        }
+    }
     
     @objc func didTapAnswerButton(_ sender: UIButton) {
+
         guard let userAnswerChosen = sender.titleLabel?.text else { return }
         answerChosen?(userAnswerChosen)
+
+        guard let difficulty = selectedDifficulty else { return }
         
-        if userAnswerChosen == currentQuiz?.correctAnswer {
-            sender.layer.borderWidth = 2.0
-            sender.layer.borderColor = UIColor.green.cgColor
-        } else {
-            sender.layer.borderWidth = 2.0
-            sender.layer.borderColor = UIColor.red.cgColor
+        switch difficulty {
+        case "Easy":
+            handleAnswerSelectedAndFluctuatePoints(by: 5, or: 1)
+            getRemainingSeconds()
+            print("REMAINING SECONDS ARE: \(remainingSeconds)")
+            print(difficulty)
+        case "Medium":
+            handleAnswerSelectedAndFluctuatePoints(by: 10, or: 2)
+            getRemainingSeconds()
+            print("REMAINING SECONDS ARE: \(remainingSeconds)")
+            print(difficulty)
+        case "Hard":
+            handleAnswerSelectedAndFluctuatePoints(by: 15, or: 3)
+            getRemainingSeconds()
+            print("REMAINING SECONDS ARE: \(remainingSeconds)")
+            print(difficulty)
+        default:
+            print("There was an error with difficulty selected")
+        }
+        
+        func handleAnswerSelectedAndFluctuatePoints(by pointsInc: Int, or pointsDec: Int) {
+            if userAnswerChosen == currentQuiz?.correctAnswer {
+                sender.layer.borderWidth = 2.0
+                sender.layer.borderColor = UIColor.green.cgColor
+                if remainingSeconds >= 15 {
+                    pointsScored += pointsInc*2
+                } else {
+                    pointsScored += pointsInc
+                }
+//                pointsScored += pointsInc
+                self.pointsLabel.text = "\(pointsScored)"
+                print(difficulty)
+            } else {
+                sender.layer.borderWidth = 2.0
+                sender.layer.borderColor = UIColor.red.cgColor
+                pointsScored -= pointsDec
+                self.pointsLabel.text = "\(pointsScored)"
+                print(difficulty)
+            }
         }
         stackView.arrangedSubviews.forEach { view in
             if let button = view as? UIButton {

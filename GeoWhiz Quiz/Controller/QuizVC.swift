@@ -61,6 +61,7 @@ class QuizVC: UIViewController {
         quizView.setAnswerButtonTitles(answers: answers)
         quizView.setQuestionNumber(questionNumber: currentQuizIndex+1)
         quizView.currentQuiz = currentQuiz
+        quizView.selectedDifficulty = selectedDifficulty
     }
     
     func setupAnswerHandling() {
