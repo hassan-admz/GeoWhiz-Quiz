@@ -61,7 +61,7 @@ class QuizView: UIView {
     
     private lazy var nextButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Next Question", for: .normal)
+        btn.setTitle("Next", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = .systemBlue
         btn.layer.cornerRadius = 10
@@ -188,10 +188,13 @@ class QuizView: UIView {
     }
     
     var answerChosen: ((String) -> Void)?
+    var totalCorrectAnswers: ((Int) -> Void)?
+    var totalPointsScored: ((Int) -> Void)?
     var currentQuiz: Quiz?
     var selectedDifficulty: String?
     var pointsScored: Int = 0
     var remainingSeconds: Int = 0
+    var userCorrectAnswers: Int = 0
     
     func getRemainingSeconds() {
         circularProgressView.remainingSecondsUpdate = { [weak self] remainingSeconds in
@@ -236,8 +239,10 @@ class QuizView: UIView {
                 } else {
                     pointsScored += pointsInc
                 }
-//                pointsScored += pointsInc
                 self.pointsLabel.text = "\(pointsScored)"
+                totalPointsScored?(pointsScored)
+                userCorrectAnswers += 1
+                totalCorrectAnswers?(userCorrectAnswers)
                 print(difficulty)
             } else {
                 sender.layer.borderWidth = 2.0
@@ -258,7 +263,7 @@ class QuizView: UIView {
         for case let button as UIButton in stackView.arrangedSubviews {
             // Here you can modify the button as needed
             button.isEnabled = true
-            button.layer.borderColor = UIColor.clear.cgColor
+            button.layer.borderColor = .none
             button.layer.borderWidth = 0
         }
     }

@@ -14,6 +14,8 @@ class QuizVC: UIViewController {
     var currentQuiz: Quiz?
     var currentQuizIndex: Int = 0
     var selectedDifficulty: String?
+    var score: Int = 0
+    var points: Int = 0
     
     // MARK: - Lifecycle
     
@@ -40,6 +42,16 @@ class QuizVC: UIViewController {
             quizView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
             
         ])
+        
+        quizView.totalCorrectAnswers = { [weak self] userCorrectAnswers in
+            self?.score = userCorrectAnswers
+        }
+        print("\(score)")
+        
+        quizView.totalPointsScored = { [weak self] pointsScored in
+            self?.points = pointsScored
+        }
+        print("\(points)")
         
         // Handle Next Button Tapped
         quizView.buttonTapHandler = { [weak self] in
@@ -105,6 +117,8 @@ class QuizVC: UIViewController {
         currentQuizIndex += 1
         if currentQuizIndex >= quizData.count {
             let resultsVC = QuizResultsVC()
+            resultsVC.finalScore = score
+            resultsVC.totalPoints = points
             navigationController?.pushViewController(resultsVC, animated: true)
         }
         self.configureUI()

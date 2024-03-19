@@ -193,4 +193,9 @@ class QuizResultsView: UIView {
     @objc func didTapHomeButton() {
         buttonTapHandler?()
     }
+    
+    func updateScoreAndPoints(with score: Int, and points: Int) {
+        scoreNumberLabel.text = "\(score) / 10"
+        pointsNumberLabel.text = "\(points)"
+    }
 }

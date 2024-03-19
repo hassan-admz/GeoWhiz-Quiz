@@ -10,6 +10,9 @@ import UIKit
 class QuizResultsVC: UIViewController {
 
     let quizResultsView = QuizResultsView()
+    let quizView = QuizView()
+    var finalScore: Int = 0
+    var totalPoints: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,8 @@ class QuizResultsVC: UIViewController {
             quizResultsView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
             
         ])
+        
+        quizResultsView.updateScoreAndPoints(with: finalScore, and: totalPoints)
         
         // Handle Home Button Tapped
         quizResultsView.buttonTapHandler = { [weak self] in
