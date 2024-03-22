@@ -40,7 +40,6 @@ class LeaderboardTableViewCell: UITableViewCell {
         iv.image = UIImage(named: "my-loves")
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-//        iv.layer.cornerRadius = iv.frame.size.width / 2
         iv.layer.cornerRadius = 17
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
@@ -51,7 +50,6 @@ class LeaderboardTableViewCell: UITableViewCell {
         lbl.text = "Maythem Haydar"
         lbl.textColor = .black
         lbl.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-//        lbl.textAlignment = .center
         lbl.numberOfLines = 0
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -153,14 +151,17 @@ class LeaderboardTableViewCell: UITableViewCell {
     
     // MARK: - Functions
     
-//    public func setTitle(with text: String) {
-//        self.userNameLabel.text = text
-//    }
-//
-//    public func setImage(with urlString: String) {
-//        if let url = URL(string: urlString) {
-//            placeImageView.sd_setImage(with: url)
-//            self.setNeedsLayout()
-//        }
-//    }
+    public func setLeaderboardComponents(rank: String, imageURL: String, username: String, points: String, easyQuizBadge: String, mediumQuizBadge: String, hardQuizBadge: String) {
+        self.rankLabel.text = rank
+        self.userNameLabel.text = username
+        self.pointsNumberLabel.text = points
+        self.badgeImageView1.image = UIImage(named: easyQuizBadge)
+        self.badgeImageView2.image = UIImage(named: mediumQuizBadge)
+        self.badgeImageView3.image = UIImage(named: hardQuizBadge)
+        ImageLoader.loadImage(urlString: imageURL) { [weak self] profileImage in
+            DispatchQueue.main.async {
+                self?.userImageView.image = profileImage
+            }
+        }
+    }
 }

@@ -88,7 +88,6 @@ class CircularProgressView: UIView {
         if let newDuration = newDuration {
             self.duration = newDuration
         }
-        
         progressLayer.strokeEnd = 0
         progressLabel.text = "\(duration)"
         startCountdown() // Call startCountdown to reset and start over

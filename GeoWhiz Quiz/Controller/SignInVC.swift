@@ -65,7 +65,12 @@ class SignInVC: UIViewController {
             }
             print("SIGNED IN!!!")
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
-            AuthManager.shared.signIn(cred: credential)
+            AuthManager.shared.signIn(cred: credential, googleUser: user) { success in
+                if !success {
+                    print("Failed to Sign In with Firebase")
+                }
+            }
+            print(user.profile?.name ?? "NO NAME")
         }
     }
 }

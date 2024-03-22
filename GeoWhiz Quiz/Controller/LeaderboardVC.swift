@@ -10,10 +10,23 @@ import UIKit
 class LeaderboardVC: UIViewController {
     
     let leaderboardView = LeaderboardView()
+    var users: [QuizUser] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.leaderboardView.reloadTableViewData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        fetchUsers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchUsers()
     }
     
     private func configureUI() {
@@ -30,5 +43,16 @@ class LeaderboardVC: UIViewController {
             leaderboardView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
             
         ])
+    }
+    
+    private func fetchUsers() {
+        DatabaseManager.fetchUsers { [weak self] users in
+            self?.users = users
+            self?.updateLeaderboardWithUsers()
+        }
+    }
+    
+    private func updateLeaderboardWithUsers() {
+        leaderboardView.users = self.users
     }
 }

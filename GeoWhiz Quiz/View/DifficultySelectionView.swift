@@ -72,7 +72,7 @@ class DifficultySelectionView: UIView {
     private func setupDifficultySelectionViewConstraints() {
         NSLayoutConstraint.activate([
             
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 250),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 220),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleLabel.widthAnchor.constraint(equalToConstant: 250),
             titleLabel.heightAnchor.constraint(equalToConstant: 50),
@@ -81,7 +81,7 @@ class DifficultySelectionView: UIView {
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             
-            signOutButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 130),
+            signOutButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 110),
             signOutButton.centerXAnchor.constraint(equalTo: centerXAnchor),
 
             deleteAccountButton.topAnchor.constraint(equalTo: signOutButton.bottomAnchor, constant: 20),

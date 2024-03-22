@@ -2,7 +2,7 @@
 //  NetworkManager.swift
 //  GeoWhiz Quiz
 //
-//  Created by user on 7/3/24.
+//  Created by Hassan Mayers on 7/3/24.
 //
 
 import Foundation

@@ -6,17 +6,22 @@
 //
 
 import UIKit
+import Firebase
 
 class QuizResultsVC: UIViewController {
 
     let quizResultsView = QuizResultsView()
     let quizView = QuizView()
     var finalScore: Int = 0
+    var totalTimeToAnswerAllQuestions: Int = 0
+    var selectedDifficulty: String?
     var totalPoints: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        updateQuizResults()
+        print("THE TOTAL TIME TAKEN TO ANSWER ALL QUESTIONS: \(totalTimeToAnswerAllQuestions)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,5 +55,22 @@ class QuizResultsVC: UIViewController {
     
     private func homeButtonTapped() {
         navigationController?.popToRootViewController(animated: true)
+    }
+    
+    // MARK: - API
+    private func updateQuizResults() {
+        guard let userID = Auth.auth().currentUser?.uid else { return }
+        guard let difficulty = selectedDifficulty else { return }
+        
+        switch difficulty {
+        case "Easy":
+            DatabaseManager.saveQuizResult(userID: userID, difficulty: difficulty, score: totalPoints, perfectScore: 100, reward: "badge-easy")
+        case "Medium":
+            DatabaseManager.saveQuizResult(userID: userID, difficulty: difficulty, score: totalPoints, perfectScore: 200, reward: "badge-medium")
+        case "Hard":
+            DatabaseManager.saveQuizResult(userID: userID, difficulty: difficulty, score: totalPoints, perfectScore: 300, reward: "badge-hard")
+        default:
+            print("There was an error with difficulty selected")
+        }
     }
 }

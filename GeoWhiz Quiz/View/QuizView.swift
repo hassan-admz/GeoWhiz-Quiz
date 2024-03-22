@@ -190,11 +190,13 @@ class QuizView: UIView {
     var answerChosen: ((String) -> Void)?
     var totalCorrectAnswers: ((Int) -> Void)?
     var totalPointsScored: ((Int) -> Void)?
+    var totalTimeToAnswerQuestions: ((Int) -> Void)?
     var currentQuiz: Quiz?
     var selectedDifficulty: String?
     var pointsScored: Int = 0
     var remainingSeconds: Int = 0
     var userCorrectAnswers: Int = 0
+    var timeToAnswerQuestion: Int = 0
     
     func getRemainingSeconds() {
         circularProgressView.remainingSecondsUpdate = { [weak self] remainingSeconds in
@@ -214,18 +216,12 @@ class QuizView: UIView {
         case "Easy":
             handleAnswerSelectedAndFluctuatePoints(by: 5, or: 1)
             getRemainingSeconds()
-            print("REMAINING SECONDS ARE: \(remainingSeconds)")
-            print(difficulty)
         case "Medium":
             handleAnswerSelectedAndFluctuatePoints(by: 10, or: 2)
             getRemainingSeconds()
-            print("REMAINING SECONDS ARE: \(remainingSeconds)")
-            print(difficulty)
         case "Hard":
             handleAnswerSelectedAndFluctuatePoints(by: 15, or: 3)
             getRemainingSeconds()
-            print("REMAINING SECONDS ARE: \(remainingSeconds)")
-            print(difficulty)
         default:
             print("There was an error with difficulty selected")
         }
@@ -243,12 +239,16 @@ class QuizView: UIView {
                 totalPointsScored?(pointsScored)
                 userCorrectAnswers += 1
                 totalCorrectAnswers?(userCorrectAnswers)
+                timeToAnswerQuestion += (30 - remainingSeconds)
+                totalTimeToAnswerQuestions?(timeToAnswerQuestion)
                 print(difficulty)
             } else {
                 sender.layer.borderWidth = 2.0
                 sender.layer.borderColor = UIColor.red.cgColor
                 pointsScored -= pointsDec
                 self.pointsLabel.text = "\(pointsScored)"
+                timeToAnswerQuestion += (30 - remainingSeconds)
+                totalTimeToAnswerQuestions?(timeToAnswerQuestion)
                 print(difficulty)
             }
         }

@@ -16,6 +16,7 @@ class QuizVC: UIViewController {
     var selectedDifficulty: String?
     var score: Int = 0
     var points: Int = 0
+    var totalTimeToAnswerAllQuestions: Int = 0
     
     // MARK: - Lifecycle
     
@@ -28,7 +29,6 @@ class QuizVC: UIViewController {
     
     private func configureUI() {
         self.displayCurrentQuiz()
-        self.setupAnswerHandling()
         self.view.backgroundColor = .systemBackground
         self.navigationItem.title = "GeoWhiz Quiz"
         view.addSubview(quizView)
@@ -46,12 +46,14 @@ class QuizVC: UIViewController {
         quizView.totalCorrectAnswers = { [weak self] userCorrectAnswers in
             self?.score = userCorrectAnswers
         }
-        print("\(score)")
         
         quizView.totalPointsScored = { [weak self] pointsScored in
             self?.points = pointsScored
         }
-        print("\(points)")
+        
+        quizView.totalTimeToAnswerQuestions = { [weak self] timeToAnswerQuestion in
+            self?.totalTimeToAnswerAllQuestions = timeToAnswerQuestion
+        }
         
         // Handle Next Button Tapped
         quizView.buttonTapHandler = { [weak self] in
@@ -76,49 +78,15 @@ class QuizVC: UIViewController {
         quizView.selectedDifficulty = selectedDifficulty
     }
     
-    func setupAnswerHandling() {
-        guard let difficulty = selectedDifficulty else { return }
-        
-        quizView.answerChosen = { [weak self] userAnswerChosen in
-            print("Difficulty: \(difficulty), Answer: \(userAnswerChosen)")
-            // Here you can adjust the behavior based on the difficulty
-            self?.handleUserAnswer(for: difficulty, answer: userAnswerChosen)
-        }
-    }
-
-    func handleUserAnswer(for difficulty: String, answer: String) {
-        // Implement different logic based on the difficulty and the user's answer
-        switch difficulty {
-        case "Easy":
-            easyQuestionAnswered(answer: answer)
-        case "Medium":
-            mediumQuestionAnswered(answer: answer)
-        case "Hard":
-            hardQuestionAnswered(answer: answer)
-        default:
-            print("Difficulty selected unknown")
-        }
-    }
-    
-    private func easyQuestionAnswered(answer: String) {
-        print("THIS IS THE USER'S ANSWER: \(answer)")
-    }
-    
-    private func mediumQuestionAnswered(answer: String) {
-        print("THIS IS THE USER'S ANSWER: \(answer)")
-    }
-    
-    private func hardQuestionAnswered(answer: String) {
-        print("THIS IS THE USER'S ANSWER: \(answer)")
-    }
-    
     private func nextButtonTapped() {
         // Logic to display next quiz question & answers
         currentQuizIndex += 1
         if currentQuizIndex >= quizData.count {
             let resultsVC = QuizResultsVC()
+            resultsVC.selectedDifficulty = selectedDifficulty
             resultsVC.finalScore = score
             resultsVC.totalPoints = points
+            resultsVC.totalTimeToAnswerAllQuestions = totalTimeToAnswerAllQuestions
             navigationController?.pushViewController(resultsVC, animated: true)
         }
         self.configureUI()

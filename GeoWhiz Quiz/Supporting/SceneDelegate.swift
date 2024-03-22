@@ -9,24 +9,24 @@ import UIKit
 import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let winScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: winScene)
-        window.rootViewController = UINavigationController(rootViewController: SignInVC())
-//        window.rootViewController = UINavigationController(rootViewController: DifficultySelectionVC())
-//        window.rootViewController = UINavigationController(rootViewController: QuizVC())
-//        window.rootViewController = UINavigationController(rootViewController: QuizResultsVC())
-//        window.rootViewController = UINavigationController(rootViewController: LeaderboardVC())
+        // Check if the user is logged in
+        if Auth.auth().currentUser != nil {
+            // User is logged in, set the MainTabBarVC as the root
+            let mainTabBarVC = MainTabBarVC()
+            window.rootViewController = mainTabBarVC
+        } else {
+            // User is not logged in, show the SignInVC
+            let signInVC = SignInVC()
+            window.rootViewController = UINavigationController(rootViewController: signInVC)
+        }
         self.window = window
         window.makeKeyAndVisible()
-        if let user = Auth.auth().currentUser {
-            window.rootViewController = UINavigationController(rootViewController: DifficultySelectionVC(currentUser: user))
-        } else {
-            window.rootViewController = UINavigationController(rootViewController: SignInVC())
-        }
     }
     
     func changeRootViewController(vc: UIViewController) {
@@ -36,21 +36,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window.rootViewController = vc
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
-    }
-
-    func sceneDidDisconnect(_ scene: UIScene) {
-    }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-    }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
     }
 }
 

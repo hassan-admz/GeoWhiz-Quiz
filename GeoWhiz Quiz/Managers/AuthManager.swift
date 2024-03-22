@@ -2,11 +2,12 @@
 //  AuthManager.swift
 //  GeoWhiz Quiz
 //
-//  Created by user on 17/3/24.
+//  Created by Hassan Mayers on 17/3/24.
 //
 
 import UIKit
 import FirebaseAuth
+import GoogleSignIn
 
 class AuthManager {
     
@@ -14,13 +15,21 @@ class AuthManager {
     
     private init() {}
     
-    func signIn(cred: AuthCredential) {
+    func signIn(cred: AuthCredential, googleUser: GIDGoogleUser?, completion: @escaping (Bool) -> Void) {
         Auth.auth().signIn(with: cred) { result, error in
-            guard let user = result?.user, error == nil else {
+            guard let _ = result?.user, error == nil else {
+                completion(false)
                 return
             }
-            let difficultySelectionVC = UINavigationController(rootViewController: DifficultySelectionVC(currentUser: user))
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc: difficultySelectionVC)
+            
+            if let googleUser = googleUser {
+                DatabaseManager.handleUserSignIn(user: googleUser)
+            }
+            
+            let mainTabBarVC = MainTabBarVC()
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc: mainTabBarVC)
+            
+            completion(true)
         }
     }
     

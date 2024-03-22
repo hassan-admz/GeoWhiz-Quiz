@@ -9,6 +9,12 @@ import UIKit
 
 class LeaderboardView: UIView {
     
+    var users: [QuizUser] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     private lazy var tableView: UITableView = {
         let tv = UITableView()
         tv.register(LeaderboardTableViewCell.self, forCellReuseIdentifier: LeaderboardTableViewCell.identifier)
@@ -38,16 +44,30 @@ class LeaderboardView: UIView {
             tableView.rightAnchor.constraint(equalTo: self.rightAnchor)
         ])
     }
+    
+    public func modifyTableView(with uiViewController: UIViewController) {
+        tableView.delegate = uiViewController as? any UITableViewDelegate
+        tableView.dataSource = uiViewController as? any UITableViewDataSource
+        tableView.reloadData()
+    }
+    
+    public func reloadTableViewData() {
+        tableView.reloadData()
+    }
 }
 
 extension LeaderboardView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: LeaderboardTableViewCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: LeaderboardTableViewCell.identifier, for: indexPath) as! LeaderboardTableViewCell
+        let user = users[indexPath.row]
+        
+        cell.setLeaderboardComponents(rank: "\(indexPath.row + 1)", imageURL: user.googlePhoto, username: user.googleUsername, points: "\(user.bestTotalQuizPoints)", easyQuizBadge: user.easyQuizReward ?? "", mediumQuizBadge: user.mediumQuizReward ?? "", hardQuizBadge: user.hardQuizReward ?? "")
+        
         return cell
     }
     
