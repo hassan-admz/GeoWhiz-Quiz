@@ -28,7 +28,7 @@ class QuizView: UIView {
         return lbl
     }()
     
-    private let circularProgressView: CircularProgressView = {
+    private lazy var circularProgressView: CircularProgressView = {
         let cpv = CircularProgressView(frame: CGRect(x: (UIScreen.main.bounds.width / 2) - 45, y: (UIScreen.main.bounds.height / 2) - 45, width: 90, height: 90))
         cpv.backgroundColor = .clear
         cpv.clipsToBounds = true
@@ -76,7 +76,6 @@ class QuizView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupQuizViewUI()
     }
     
@@ -85,6 +84,7 @@ class QuizView: UIView {
     }
     
     private func setupQuizViewUI() {
+        self.backgroundColor = .clear
         addQuizViews()
         setupQuizViewConstraints()
         getRemainingSeconds()
@@ -170,7 +170,8 @@ class QuizView: UIView {
             let button = UIButton(type: .system)
             button.setTitle("\(title)", for: .normal)
             button.setTitleColor(.black, for: .normal)
-            button.backgroundColor = .systemGray6
+            let customGray = UIColor(red: 0.90, green: 0.90, blue: 0.92, alpha: 1.0)
+            button.backgroundColor = customGray
             button.layer.cornerRadius = 10
             button.heightAnchor.constraint(equalToConstant: 60).isActive = true
             button.widthAnchor.constraint(equalToConstant: 200).isActive = true
@@ -241,7 +242,6 @@ class QuizView: UIView {
                 totalCorrectAnswers?(userCorrectAnswers)
                 timeToAnswerQuestion += (30 - remainingSeconds)
                 totalTimeToAnswerQuestions?(timeToAnswerQuestion)
-                print(difficulty)
             } else {
                 sender.layer.borderWidth = 2.0
                 sender.layer.borderColor = UIColor.red.cgColor
@@ -249,7 +249,6 @@ class QuizView: UIView {
                 self.pointsLabel.text = "\(pointsScored)"
                 timeToAnswerQuestion += (30 - remainingSeconds)
                 totalTimeToAnswerQuestions?(timeToAnswerQuestion)
-                print(difficulty)
             }
         }
         stackView.arrangedSubviews.forEach { view in

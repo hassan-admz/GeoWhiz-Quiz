@@ -39,6 +39,7 @@ class SignInView: UIView {
     }
     
     private func setupSignInViewUI() {
+        self.backgroundColor = .clear
         addSignInViews()
         setupSignInViewConstraints()
     }

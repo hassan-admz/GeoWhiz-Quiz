@@ -21,7 +21,6 @@ class QuizResultsVC: UIViewController {
         super.viewDidLoad()
         configureUI()
         updateQuizResults()
-        print("THE TOTAL TIME TAKEN TO ANSWER ALL QUESTIONS: \(totalTimeToAnswerAllQuestions)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,8 +30,9 @@ class QuizResultsVC: UIViewController {
     
     private func configureUI() {
         
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .white
         self.navigationItem.title = "GeoWhiz Quiz"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         view.addSubview(quizResultsView)
         quizResultsView.translatesAutoresizingMaskIntoConstraints = false
         

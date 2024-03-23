@@ -18,6 +18,7 @@ class CircularProgressView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .clear
         setupTrackLayer()
         setupProgressLayer()
         setupProgressLabel()
@@ -55,6 +56,7 @@ class CircularProgressView: UIView {
         progressLabel.textAlignment = .center
         progressLabel.text = "\(duration)"
         progressLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        progressLabel.textColor = .black
         addSubview(progressLabel)
     }
     

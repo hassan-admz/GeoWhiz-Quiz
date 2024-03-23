@@ -123,6 +123,7 @@ class QuizResultsView: UIView {
     }
     
     private func setupQuizResultsViewUI() {
+        self.backgroundColor = .clear
         addQuizResultsViews()
         setupQuizResultsViewConstraints()
     }

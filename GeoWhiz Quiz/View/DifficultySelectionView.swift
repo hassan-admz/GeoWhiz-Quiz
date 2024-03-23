@@ -58,6 +58,7 @@ class DifficultySelectionView: UIView {
     // MARK: UI Configuration
     
     private func setupDifficultySelectionViewUI() {
+        self.backgroundColor = .clear
         addDifficultySelectionViews()
         setupDifficultySelectionViewConstraints()
     }
@@ -107,7 +108,8 @@ class DifficultySelectionView: UIView {
             button.setTitle("\(title)", for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
             button.setTitleColor(.black, for: .normal)
-            button.backgroundColor = .systemGray6
+            let customGray = UIColor(red: 0.90, green: 0.90, blue: 0.92, alpha: 1.0)
+            button.backgroundColor = customGray
             button.layer.cornerRadius = 10
             button.heightAnchor.constraint(equalToConstant: 75).isActive = true
             button.widthAnchor.constraint(equalToConstant: 300).isActive = true

@@ -94,6 +94,7 @@ class LeaderboardTableViewCell: UITableViewCell {
     }()
     
     private func configureUI() {
+        self.backgroundColor = .clear
         addTableViewCellViews()
         setupTableViewCellViewsConstraints()
     }

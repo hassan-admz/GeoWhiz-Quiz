@@ -26,12 +26,14 @@ class LeaderboardVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureUI()
         fetchUsers()
     }
     
     private func configureUI() {
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .white
         self.navigationItem.title = "Leaderboard"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         view.addSubview(leaderboardView)
         leaderboardView.translatesAutoresizingMaskIntoConstraints = false
         

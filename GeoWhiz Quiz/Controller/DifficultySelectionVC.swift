@@ -17,7 +17,6 @@ class DifficultySelectionVC: UIViewController {
     var currentUser: User!
     init(currentUser: User) {
         self.currentUser = currentUser
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,7 +26,6 @@ class DifficultySelectionVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
         configureUI()
         fetchQuizzes()
     }
@@ -35,8 +33,9 @@ class DifficultySelectionVC: UIViewController {
     // MARK: - Configure UI
     
     private func configureUI() {
+        self.view.backgroundColor = .white
         self.navigationItem.title = "GeoWhiz Quiz"
-       
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         view.addSubview(difficultySelectionViews)
         difficultySelectionViews.translatesAutoresizingMaskIntoConstraints = false
         

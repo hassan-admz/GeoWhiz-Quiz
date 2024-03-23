@@ -34,6 +34,7 @@ class LeaderboardView: UIView {
     }
     
     private func configureTableView() {
+        self.backgroundColor = .clear
         tableView.separatorInset = .zero
         addSubview(tableView)
         

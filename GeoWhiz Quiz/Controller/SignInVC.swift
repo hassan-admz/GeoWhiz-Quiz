@@ -16,7 +16,7 @@ class SignInVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .white
         configureSignInViews()
         configureButton()
         configureGoogleSignIn()

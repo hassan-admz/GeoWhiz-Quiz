@@ -29,8 +29,9 @@ class QuizVC: UIViewController {
     
     private func configureUI() {
         self.displayCurrentQuiz()
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .white
         self.navigationItem.title = "GeoWhiz Quiz"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         view.addSubview(quizView)
         quizView.translatesAutoresizingMaskIntoConstraints = false
         

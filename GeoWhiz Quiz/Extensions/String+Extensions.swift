@@ -2,7 +2,7 @@
 //  String+Extensions.swift
 //  GeoWhiz Quiz
 //
-//  Created by user on 12/3/24.
+//  Created by Hassan Mayers on 12/3/24.
 //
 
 import UIKit
@@ -14,7 +14,6 @@ extension String {
             .documentType: NSAttributedString.DocumentType.html,
             .characterEncoding: String.Encoding.utf8.rawValue
         ]
-        
         return try? NSAttributedString(data: encodedData, options: options, documentAttributes: nil)
     }
     

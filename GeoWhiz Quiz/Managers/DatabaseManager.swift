@@ -45,7 +45,6 @@ struct DatabaseManager {
                         print("googleUsername: \(user.profile?.name ?? "")")
                         print("googlePhoto: \(user.profile?.imageURL(withDimension: 200)?.absoluteString ?? "")")
                         print("userId: \(userID)")
-                        // Print other fields if needed
                     }
                 }
             }
